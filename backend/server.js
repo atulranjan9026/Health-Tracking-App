@@ -14,7 +14,7 @@ connectDB();
 // Middleware
 app.use(express.json()); 
 app.use(cors({
-    origin: 'http://localhost:3000', 
+    origin: 'https://health-tracking-app-1-i17w.onrender.com/', 
 }));
 
 // Routes
