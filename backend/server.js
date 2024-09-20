@@ -15,6 +15,8 @@ connectDB();
 app.use(express.json()); 
 app.use(cors({
     origin: 'https://health-tracking-app-1-i17w.onrender.com/', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Include OPTIONS method
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // Routes
