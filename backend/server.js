@@ -13,12 +13,16 @@ connectDB();
 
 // Middleware
 app.use(express.json()); 
-app.use(cors({
+const corsOptions = {
     origin: 'https://health-tracking-app-1-i17w.onrender.com/', 
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Include OPTIONS method
   allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // If you need to support credentials (like cookies)
+  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
+app.use(cors(corsOptions));
 // Routes
 app.use('/api', authRoutes);
 app.use('/api', healthRecords);
