@@ -17,10 +17,11 @@ const AddHealthRecord = () => {
       const token = localStorage.getItem("token");
       console.log("token :", token); // Verify token is present
       await axios.post(
-        "http://localhost:5000/api/health-records",
+        `${process.env.REACT_APP_API_URL}/health-records`,
         { date, temperature, bloodPressure, heartRate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      
 
       navigate("/dashboard");
     } catch (error) {

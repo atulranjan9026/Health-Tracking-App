@@ -17,9 +17,10 @@ const EditHealthRecord = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `http://localhost:5000/api/health-records/${id}`,
+          `${process.env.REACT_APP_API_URL}/health-records/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
+        
         const formattedDate = new Date(res.data.date).toISOString().split('T')[0];
         setRecord({
           ...res.data,
@@ -42,10 +43,11 @@ const EditHealthRecord = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5000/api/health-records/${id}`,
+        `${process.env.REACT_APP_API_URL}/health-records/${id}`,
         record,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      
       navigate(`/record/${id}`);
     } catch (error) {
       console.error("Error updating record", error);

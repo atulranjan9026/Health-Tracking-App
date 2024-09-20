@@ -24,11 +24,12 @@ const Dashboard = () => {
         const token = localStorage.getItem("token");
         console.log("token :", token);
         const res = await axios.get(
-          "http://localhost:5000/api/health-records",
+          `${process.env.REACT_APP_API_URL}/health-records`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        
         setRecords(res.data);
         setFilteredRecords(res.data);
       } catch (error) {
@@ -54,9 +55,10 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("token");
       console.log("token :", token);
-      await axios.delete(`http://localhost:5000/api/health-records/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/health-records/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      
       setRecords(records.filter((record) => record._id !== id));
     } catch (error) {
       console.error("Error deleting record", error);

@@ -12,9 +12,10 @@ const HealthRecordDetail = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `http://localhost:5000/api/health-records/${id}`,
+          `${process.env.REACT_APP_API_URL}/health-records/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
+        
         setRecord(res.data);
       } catch (error) {
         console.error("Error fetching record", error);
